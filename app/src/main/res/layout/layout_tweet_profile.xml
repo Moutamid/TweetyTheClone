@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/post_data_text_view_profile_tweet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:fontFamily="serif"
+            android:maxLines="6"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in arcu magna. Aenean eleifend sagittis odio ut pellentesque. Nam est tellus, ultricies at lacinia in, maximus vel leo. Nullam pharetra venenatis porttitor. Sed sagittis nisi gravida aliquam ultrices. Phasellus sed auctor quam. Praesent volutpat ullamcorper justo eu placerat."
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/delete_post_image_view_profile_tweet_layout"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/ic_outline_delete_forever_24" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

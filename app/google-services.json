@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21723844591",
+    "project_id": "tweety---the-clone",
+    "storage_bucket": "tweety---the-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21723844591:android:6fc6aa3419f13aeda8701a",
+        "android_client_info": {
+          "package_name": "com.moutamid.tweetytheclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21723844591-4b0gdoc3h6c0ov0npbhrqjhukt789fqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSHHDEkUZQKJTPKDo2xqmcFHEkpg1LQQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21723844591-4b0gdoc3h6c0ov0npbhrqjhukt789fqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

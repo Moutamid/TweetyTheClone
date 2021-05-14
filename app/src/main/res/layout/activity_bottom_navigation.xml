@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".BottomNavigationActivity">
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_layout_activity_bottom" />
+
+    <LinearLayout
+        android:id="@+id/bottom_layout_activity_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/profile_tab_button_bottom_navigation"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/profile_image_view_bottom_navigation"
+                android:layout_above="@+id/firstline"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:src="@drawable/profile" />
+
+            <View
+                android:id="@+id/firstline"
+                android:layout_width="20dp"
+                android:layout_height="7dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/skyBlue"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/home_tab_button_bottom_navigation"
+            android:background="@color/tabbtnsbg"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/secline"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_home_unselected" />
+
+            <View
+                android:id="@+id/secline"
+                android:layout_width="20dp"
+                android:layout_height="7dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/skyBlue" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/message_tab_button_bottom_navigation"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/thirdline"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_outline_chat_24" />
+
+            <View
+                android:id="@+id/thirdline"
+                android:layout_width="20dp"
+                android:layout_height="7dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/skyBlue"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
