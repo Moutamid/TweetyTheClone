@@ -1,5 +1,7 @@
 package com.moutamid.tweetytheclone;
 
+import static com.bumptech.glide.Glide.with;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -114,7 +118,7 @@ public class ChatFragment extends Fragment {
 
                         chatsArrayList.clear();
 
-                        for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                             ChatModel model = dataSnapshot.getValue(ChatModel.class);
                             model.setUid(dataSnapshot.getKey());
@@ -171,15 +175,20 @@ public class ChatFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final ViewHolderRightMessage holder, int position) {
             ChatModel chatModel = chatsArrayList.get(position);
-
+            Log.e(TAG, "onBindViewHolder: 1234: name: " + chatModel.getName());
+            Log.e(TAG, "onBindViewHolder: 1234: url: " + chatModel.getImageUrl());
             holder.chatName.setText(chatModel.getName());
             holder.lastMessage.setText(chatModel.getLastMcg());
-            Glide.with(getActivity())
-                    .load(chatModel.getImageUrl())
+
+            String url = chatModel.getImageUrl().equals("Error") ? "https://cdn.pixabay.com/photo/2019/08/06/00/46/black-and-white-4387130_960_720.jpg"
+                    : chatModel.getImageUrl();
+            with(getActivity())
+                    .load(url)
                     .apply(new RequestOptions()
                             .placeholder(R.color.grey)
                             .error(R.color.grey)
                     )
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(holder.profileImage);
 
             holder.parentLayout.setOnClickListener(new View.OnClickListener() {
