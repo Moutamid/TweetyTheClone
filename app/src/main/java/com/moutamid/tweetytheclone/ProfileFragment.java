@@ -89,6 +89,19 @@ public class ProfileFragment extends Fragment {
 
         getUserPosts();
 
+        rootView.findViewById(R.id.logoutBtn).setOnClickListener(view -> {
+            utils.removeSharedPref(requireContext());
+            mAuth.signOut();
+            Intent intent = new Intent(requireContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            requireActivity().finish();
+            startActivity(intent);
+        });
+
+        rootView.findViewById(R.id.settingsBtn).setOnClickListener(view -> {
+            startActivity(new Intent(requireContext(), SettingsActivity.class));
+        });
+
         return rootView;
     }
 
