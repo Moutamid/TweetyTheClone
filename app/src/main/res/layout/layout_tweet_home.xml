@@ -15,8 +15,8 @@
         android:padding="10dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
             android:id="@+id/user_profile_layout_post_tweet_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -29,19 +29,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_name_post_tweet_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="My user name"
                     android:textColor="@color/black"
                     android:textSize="23sp"
-                    android:id="@+id/user_name_post_tweet_layout"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/user_date_post_tweet_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="18/12/2021"
-                    android:id="@+id/user_date_post_tweet_layout"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -57,47 +57,56 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/post_data_text_view_tweet_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
-            android:id="@+id/post_data_text_view_tweet_layout"
             android:fontFamily="serif"
             android:maxLines="6"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in arcu magna. Aenean eleifend sagittis odio ut pellentesque. Nam est tellus, ultricies at lacinia in, maximus vel leo. Nullam pharetra venenatis porttitor. Sed sagittis nisi gravida aliquam ultrices. Phasellus sed auctor quam. Praesent volutpat ullamcorper justo eu placerat."
             android:textColor="@color/black"
             android:textSize="17sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/menutBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_more_vert_24" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/likes_count_text_view_post_tweet_layout"
-                android:text="200" />
-<!--            android:layout_marginEnd="10dp"-->
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <com.like.LikeButton
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:id="@+id/like_button_post_tweet_layout"
-                app:icon_size="10dp"
-                app:anim_scale_factor="2.5"
-                app:icon_type="heart"
-                app:liked="false" />
+                <TextView
+                    android:id="@+id/likes_count_text_view_post_tweet_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="200" />
+                <!--            android:layout_marginEnd="10dp"-->
 
-            <!--            <ImageView-->
-            <!--                android:layout_width="35dp"-->
-            <!--                android:layout_height="35dp"-->
-            <!--                android:src="@drawable/ic_twitter" />-->
+                <com.like.LikeButton
+                    android:id="@+id/like_button_post_tweet_layout"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    app:anim_scale_factor="2.5"
+                    app:icon_size="10dp"
+                    app:icon_type="heart"
+                    app:liked="false" />
 
-        </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

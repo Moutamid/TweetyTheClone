@@ -3,6 +3,7 @@ package com.moutamid.tweetytheclone;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,24 +78,38 @@ public class ActivityLogin extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailStr = emailEditText.getText().toString();
-                String passwordStr = passwordEditText.getText().toString();
 
-                if (!TextUtils.isEmpty(emailStr) && !TextUtils.isEmpty(passwordStr)) {
+                new AlertDialog.Builder(ActivityLogin.this)
+                        .setMessage("Do you agree to accept the Terms and conditions & our Privacy Policy?")
+                        .setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss())
+                        .setNeutralButton("Show T&Cs", (dialogInterface, i) -> {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse("https://earnreal.github.io/home/terms-conditions.html"));
+                            startActivity(intent);
+                        })
+                        .setPositiveButton("Yes", (dialogInterface, i) -> {
 
-                    signInUserWithNameAndPassword(emailStr, passwordStr);
+                            String emailStr = emailEditText.getText().toString();
+                            String passwordStr = passwordEditText.getText().toString();
 
-                } else if (TextUtils.isEmpty(emailStr)) {
+                            if (!TextUtils.isEmpty(emailStr) && !TextUtils.isEmpty(passwordStr)) {
 
-                    emailEditText.setError("Please enter emailStr");
-                    emailEditText.requestFocus();
+                                signInUserWithNameAndPassword(emailStr, passwordStr);
 
-                } else if (TextUtils.isEmpty(passwordStr)) {
+                            } else if (TextUtils.isEmpty(emailStr)) {
 
-                    passwordEditText.setError("Please enter password");
-                    passwordEditText.requestFocus();
+                                emailEditText.setError("Please enter emailStr");
+                                emailEditText.requestFocus();
 
-                }
+                            } else if (TextUtils.isEmpty(passwordStr)) {
+
+                                passwordEditText.setError("Please enter password");
+                                passwordEditText.requestFocus();
+
+                            }
+                        })
+                        .show();
+
             }
         };
     }
@@ -137,7 +153,7 @@ public class ActivityLogin extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        if (!snapshot.exists()){
+                        if (!snapshot.exists()) {
                             return;
                         }
 

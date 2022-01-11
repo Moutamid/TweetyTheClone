@@ -1,9 +1,12 @@
 package com.moutamid.tweetytheclone;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ import com.like.LikeButton;
 import com.like.OnLikeListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -112,6 +117,34 @@ public class HomeFragment extends Fragment {
                         animationView1.setVisibility(View.VISIBLE);
 
                         Toast.makeText(getActivity(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        databaseReference.child("reports")
+                .child("uid")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        boolean isCancellable = true;
+                        String msg = "You have been reported once. Delete any appropriate content before you receive more reports and then eventually your account will be suspended!";
+                        if (snapshot.exists()) {
+                            if (snapshot.getChildrenCount() > 3) {
+                                //BANNED
+                                msg = "Your account have been suspended due to receiving many reports on your content!";
+                                isCancellable = false;
+                            }
+
+                            new AlertDialog.Builder(requireContext())
+                                    .setTitle("Alert")
+                                    .setCancelable(isCancellable)
+                                    .setMessage(msg)
+                                    .show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
                     }
                 });
 
@@ -362,6 +395,55 @@ public class HomeFragment extends Fragment {
                     holder.likesCountTextView,
                     post.getPostKey());
 
+            holder.menuBtn.setOnClickListener(menuBtnCLickListener(post));
+
+        }
+
+        private View.OnClickListener menuBtnCLickListener(PostModel post) {
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog dialog;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                    final CharSequence[] items = {"Report User"};
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int position) {
+
+                            new AlertDialog.Builder(requireContext())
+                                    .setTitle("Are you sure?")
+                                    .setMessage("Do you really want to report this user?")
+                                    .setPositiveButton("Yes", (dialogInterface, i) -> {
+                                        ProgressDialog progressDialog;
+                                        progressDialog = new ProgressDialog(requireContext());
+                                        progressDialog.setCancelable(false);
+                                        progressDialog.setMessage("Loading...");
+                                        progressDialog.show();
+
+                                        /*HashMap<String, String> map = new HashMap<>();
+                                        map.put("uid", post.getPosterUid());
+                                        map.put("content", post.getPostData());*/
+                                        databaseReference.child("reports")
+                                                .child("uid")
+                                                .push()
+                                                .setValue(true).addOnCompleteListener(task -> {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(requireContext(), "Done", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            progressDialog.dismiss();
+                                        });
+                                    })
+                                    .setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss())
+                                    .show();
+
+                        }
+                    });
+
+                    dialog = builder.create();
+                    dialog.show();
+                }
+            };
         }
 
         private void setLikeButtonClickListener(LikeButton button, TextView likesCountTextView, String postKey) {
@@ -555,10 +637,12 @@ public class HomeFragment extends Fragment {
             TextView userNameTextView, postDateTextView, postDataTextView, likesCountTextView;
             CircleImageView userProfileImageView;
             LikeButton likeButton;
+            ImageView menuBtn;
 
             public ViewHolderRightMessage(@NonNull View v) {
                 super(v);
                 userProfileLayout = v.findViewById(R.id.user_profile_layout_post_tweet_layout);
+                menuBtn = v.findViewById(R.id.menutBtn);
                 userNameTextView = v.findViewById(R.id.user_name_post_tweet_layout);
                 postDateTextView = v.findViewById(R.id.user_date_post_tweet_layout);
                 userProfileImageView = v.findViewById(R.id.user_profile_imageview_post_tweet_layout);

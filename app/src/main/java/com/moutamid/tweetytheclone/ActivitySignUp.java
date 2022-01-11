@@ -2,9 +2,11 @@ package com.moutamid.tweetytheclone;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
@@ -88,8 +90,21 @@ public class ActivitySignUp extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDialog.show();
-                checkStatusOfEditTexts();
+                new AlertDialog.Builder(ActivitySignUp.this)
+                        .setMessage("Do you agree to accept the Terms and conditions & our Privacy Policy?")
+                        .setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss())
+                        .setNeutralButton("Show T&Cs", (dialogInterface, i) -> {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse("https://earnreal.github.io/home/terms-conditions.html"));
+                            startActivity(intent);
+                        })
+                        .setPositiveButton("Yes", (dialogInterface, i) -> {
+
+                            mDialog.show();
+                            checkStatusOfEditTexts();
+                        })
+                        .show();
+
             }
         };
     }

@@ -1,10 +1,13 @@
 package com.moutamid.tweetytheclone;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -118,7 +122,84 @@ public class ConversationActivity extends AppCompatActivity {
                 Toast.makeText(ConversationActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        findViewById(R.id.menuBtnConvo).setOnClickListener(view -> {
+            AlertDialog dialog;
+            AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);
+            final CharSequence[] items = {"Delete chat", "Block"};
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int position) {
+                    if (position == 1)
+                        block = true;
+
+                    new AlertDialog.Builder(ConversationActivity.this)
+                            .setTitle("Are you sure?")
+                            .setMessage("Do you really want to do this?")
+                            .setPositiveButton("Yes", (dialogInterface, i) -> {
+                                ProgressDialog progressDialog;
+                                progressDialog = new ProgressDialog(ConversationActivity.this);
+                                progressDialog.setCancelable(false);
+                                progressDialog.setMessage("Loading...");
+                                progressDialog.show();
+
+                                databaseReference.child("chats").child(mAuth.getCurrentUser().getUid())
+                                        .child(otherUserUid).removeValue()
+                                        .addOnCompleteListener(task -> {
+                                            if (block) {
+                                                databaseReference.child("chats").child(otherUserUid)
+                                                        .child(mAuth.getCurrentUser().getUid())
+                                                        .child("block").setValue(true)
+                                                        .addOnCompleteListener(task1 -> {
+                                                            progressDialog.dismiss();
+                                                            finish();
+                                                        });
+                                                return;
+                                            }
+                                            progressDialog.dismiss();
+                                            finish();
+                                        });
+
+                            })
+                            .setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss())
+                            .show();
+
+                }
+            });
+
+            dialog = builder.create();
+            dialog.show();
+        });
+
+        databaseReference.child("chats").child(mAuth.getCurrentUser().getUid())
+                .child(otherUserUid)
+                .child("block").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    new AlertDialog.Builder(ConversationActivity.this)
+                            .setMessage("You are blocked by this user!")
+                            .setPositiveButton("Delete Chat", (dialogInterface, i) -> {
+                                databaseReference.child("chats").child(mAuth.getCurrentUser().getUid())
+                                        .child(otherUserUid).removeValue().addOnCompleteListener(task -> {
+                                    finish();
+                                });
+                            })
+                            .setCancelable(false)
+                            .show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
+
+    boolean block = false;
 
     private void setAddMessageBtnCLickListener() {
         EditText editText = findViewById(R.id.reply_edit_text_activity_conversation);
