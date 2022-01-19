@@ -3,10 +3,10 @@
 #### *Created an app for entertainment* ####
 
 ## Downloads
- [<img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" height="45px" />](https://play.google.com/store/apps/details?id=com.nostra13.universalimageloader.sample) [<img src="https://www.javatpoint.com/fullformpages/images/apk.png" height="45px" />](https://github.com/Moutamid/TweetyTheClone/blob/master/app/release/app-release.apk)
+ [<img src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" height="45px" />](https://play.google.com/store/apps/details?id=com.moutamid.tweetytheclone) [<img src="https://www.javatpoint.com/fullformpages/images/apk.png" height="45px" />](https://github.com/Moutamid/TweetyTheClone/blob/master/app/release/app-release.apk)
 
 ## Preview
-<img src="https://raw.githubusercontent.com/Moutamid/TweetyTheClone/master/tweetyclonemockup/image1.jpeg" width="220"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image2.jpeg" width="220"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image3.jpeg" width="220"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image4.jpeg" width="220"/>
+<img src="https://raw.githubusercontent.com/Moutamid/TweetyTheClone/master/tweetyclonemockup/image1.jpeg" width="210"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image2.jpeg" width="210"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image3.jpeg" width="210"/> <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/image4.jpeg" width="210"/>
 
 <img src="https://raw.githubusercontent.com/Moutamid/tweetytheclone/master/tweetyclonemockup/video-tweety.gif" width="250"/>
 
