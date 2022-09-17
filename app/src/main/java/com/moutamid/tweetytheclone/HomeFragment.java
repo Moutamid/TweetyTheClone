@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-        databaseReference.child("reports")
+        /*databaseReference.child("reports")
                 .child("uid")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment {
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                });
+                });*/
 
         return rootView;
     }

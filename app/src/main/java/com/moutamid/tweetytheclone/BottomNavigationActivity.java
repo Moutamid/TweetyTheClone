@@ -100,7 +100,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
                         .load(url)
                         .apply(new RequestOptions()
                                 .placeholder(R.color.grey)
-                                .error(R.color.grey)
+                                .error(R.drawable.profile)
                         )
                         .into(circleImageView);
 
@@ -109,6 +109,14 @@ public class BottomNavigationActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d(TAG, "onCancelled: "+error.getMessage());
+                CircleImageView circleImageView = findViewById(R.id.profile_image_view_bottom_navigation);
+                Glide.with(BottomNavigationActivity.this)
+                        .load("url")
+                        .apply(new RequestOptions()
+                                .placeholder(R.color.grey)
+                                .error(R.drawable.profile)
+                        )
+                        .into(circleImageView);
             }
         });
 
@@ -146,6 +154,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Toast.makeText(BottomNavigationActivity.this, "Get your remaining money done now. I'll add this as well lol", Toast.LENGTH_LONG).show();
                 currentLayout.setBackgroundColor(0);
                 currentViewLine.setVisibility(View.INVISIBLE);
 
@@ -186,8 +195,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                currentLayout.setBackgroundColor(0);
+//                Toast.makeText(BottomNavigationActivity.this, "Get your remaining money done now. I'll add this as well lol", Toast.LENGTH_LONG).show();
+                 currentLayout.setBackgroundColor(0);
                 currentViewLine.setVisibility(View.INVISIBLE);
 
                 currentLayout = profileTabBtn;

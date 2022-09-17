@@ -42,7 +42,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:gravity="center"
-            android:text="Log in to your existing account of \nTweety - the clone"
+            android:text="Log in to your existing account of \nThoughts app"
             android:textColor="@color/greyishblue"
             android:textSize="20sp" />
 

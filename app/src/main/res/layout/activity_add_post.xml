@@ -33,7 +33,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_tweet_btn_add_post"
-                android:text="tweet"
+                android:text="post"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
@@ -54,14 +54,14 @@
     </LinearLayout>
 
     <com.moutamid.tweetytheclone.AppCompatLineEditText
+        android:id="@+id/tweet_data_edit_text_add_post"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:hint="Your tweet text resides here..."
-        android:id="@+id/tweet_data_edit_text_add_post"
         android:layout_below="@id/top_header_add_post"
         android:background="@color/white"
-        android:gravity="top" />
+        android:gravity="top"
+        android:hint="Your thought text resides here..."
+        android:padding="15dp" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progress_bar_add_post"

@@ -60,7 +60,7 @@ public class AddPostActivity extends AppCompatActivity {
 
 //                    Toast.makeText(AddPostActivity.this, data, Toast.LENGTH_SHORT).show();
                 } else
-                    Toast.makeText(AddPostActivity.this, "Your tweet is empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPostActivity.this, "Your thought is empty!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -168,7 +168,7 @@ public class AddPostActivity extends AppCompatActivity {
     private void clearEdittextData() {
         utils.storeString(AddPostActivity.this, "postData", "Error");
         editText.setText("");
-        Toast.makeText(this, "Your tweet is uploaded!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Your thought is uploaded!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

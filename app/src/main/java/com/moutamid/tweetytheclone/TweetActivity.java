@@ -116,6 +116,7 @@ public class TweetActivity extends AppCompatActivity {
         findViewById(R.id.message_btn_activity_tweet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Toast.makeText(TweetActivity.this, "Get your remaining money done now. I'll add this as well lol", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(TweetActivity.this, ConversationActivity.class);
                 intent.putExtra("first", true);
@@ -125,8 +126,6 @@ public class TweetActivity extends AppCompatActivity {
 
                 startActivity(intent);
 
-//                Toast.makeText(TweetActivity.this, "Will be available in next update!", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -135,7 +134,7 @@ public class TweetActivity extends AppCompatActivity {
         findViewById(R.id.retweet_btn_activity_tweet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                Toast.makeText(TweetActivity.this, "Get your remaining money done now. I'll add this as well lol", Toast.LENGTH_LONG).show();
                 utils.showDialog(TweetActivity.this,
                         "Are you sure?",
                         "Do you really want to retweet this post to your timeline?",
@@ -197,7 +196,7 @@ public class TweetActivity extends AppCompatActivity {
         findViewById(R.id.send_reply_btn_activity_tweet).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(TweetActivity.this, "I added this as a compliment. Give me thanks later!", Toast.LENGTH_LONG).show();
                 String replyText = editText.getText().toString();
 
                 if (TextUtils.isEmpty(replyText)) {
